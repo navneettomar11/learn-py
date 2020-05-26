@@ -3,7 +3,7 @@ from typing import List
 
 class RemoveDuplicates:
 
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def removeDuplicatesOld(self, nums: List[int]) -> int:
         n = len(nums)
         if n == 0:
             return 0
@@ -22,6 +22,24 @@ class RemoveDuplicates:
 
         return count
 
+    def removeDuplicates(self, nums: List[int]) -> int:
+        n = len(nums)
+        uniqueCount = 0
+        if n < 2:
+            return n
+
+        for i in range(n-1, -1, -1):
+            if nums[i] == nums[i-1]:
+               nums[i] = None
+            elif i == 0 or nums[i] != nums[i-1]: uniqueCount+=1
+
+        while None in nums:
+            nums.remove(None)
+
+        return uniqueCount
+
 if __name__ == '__main__':
-    print(RemoveDuplicates().removeDuplicates([1,1,2]))
-    print(RemoveDuplicates().removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+    removeDuplicates = RemoveDuplicates()
+    print(removeDuplicates.removeDuplicates([1]))
+    print(removeDuplicates.removeDuplicates([1,1,2]))
+    print(removeDuplicates.removeDuplicates([0,0,1,1,1,2,2,3,3,4]))

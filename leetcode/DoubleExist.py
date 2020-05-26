@@ -15,7 +15,8 @@ class DoubleExist:
 
 
 if __name__ == '__main__':
-    print(DoubleExist().checkIfExist([10,2,5,3]))
-    print(DoubleExist().checkIfExist([7,1,14,11]))
-    print(DoubleExist().checkIfExist([3,1,7,11]))
-    print(DoubleExist().checkIfExist([0,0]))
+    dobuleExist = DoubleExist()
+    print(dobuleExist.checkIfExist([10,2,5,3]))
+    print(dobuleExist.checkIfExist([7,1,14,11]))
+    print(dobuleExist.checkIfExist([3,1,7,11]))
+    print(dobuleExist.checkIfExist([0,0]))

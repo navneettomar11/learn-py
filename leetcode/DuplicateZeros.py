@@ -3,11 +3,6 @@ from typing import List
 
 class DuplicateZeros:
 
-    def shiftArrayToRight(self, arr: List[int], start: int, end: int):
-        i = start
-        while i < end:
-            arr[i+1] = arr[i]
-
     def duplicateZeros(self, arr: List[int]):
             n = len(arr)
             skip = False
@@ -20,9 +15,10 @@ class DuplicateZeros:
 
 
 if __name__ == '__main__':
+    duplicateZeros = DuplicateZeros()
     arr = [1,0,2,3,0,4,5,0]
-    DuplicateZeros().duplicateZeros(arr)
+    duplicateZeros.duplicateZeros(arr)
     print(arr)
     arr = [1,2,3]
-    DuplicateZeros().duplicateZeros(arr)
+    duplicateZeros.duplicateZeros(arr)
     print(arr)
