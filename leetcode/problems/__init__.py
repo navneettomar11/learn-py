@@ -1,0 +1,3 @@
+from .sort_by_parity_bit_ii import sort_array_by_parity_bit_ii
+from .running_sum_of_1darray import running_sum, xor_operations
+from .array_easy import shuffle_array, kid_with_candies, smaller_numbers_than_current
