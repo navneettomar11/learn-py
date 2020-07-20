@@ -1,4 +1,5 @@
 import sys
+from typing import List
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -36,7 +37,39 @@ def preorder(node: TreeNode, level: int, pos: int, map):
     preorder(node.left, level + 1, 2*pos, map)
     preorder(node.right, level + 1, 2*pos + 1, map)
 
+
+def preorder_traversal(node: TreeNode, pre_order_list: List[int]):
+
+    if node is None:
+        pre_order_list.append(None)
+        return
+    else:
+        pre_order_list.append(node.val)
+
+    preorder_traversal(node.left, pre_order_list)
+    preorder_traversal(node.right, pre_order_list)
+
+def is_same_tree(p: TreeNode, q: TreeNode) -> bool:
+    plist = []
+    qlist = []
+    preorder_traversal(p, plist)
+    preorder_traversal(q, qlist)
+
+    plen = len(plist)
+    qlen = len(qlist)
+    print(plist, qlist)
+    if plen == 0 or qlen == 0 or plen != qlen :
+        return False
+
+    for i in range(0, plen):
+        if plist[i] != qlist[i]:
+            return False
+
+    return True
+
+
 if __name__ == "__main__":
+   """
     root = TreeNode(1)
     root.left = TreeNode(3)
     root.right = TreeNode(2)
@@ -47,3 +80,15 @@ if __name__ == "__main__":
     root.right.right.right = TreeNode(7)
 
     width_of_binary_tree(root)
+    """
+   p = TreeNode(1)
+   p.left = TreeNode(2)
+   #p.right = TreeNode(3)
+
+   q = TreeNode(1)
+   q.left = TreeNode(None)
+   q.right = TreeNode(1)
+
+
+
+   print(is_same_tree(p, q))
