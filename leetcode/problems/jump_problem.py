@@ -16,7 +16,7 @@ def can_jump(nums: List[int]) -> bool :
 
 
 if __name__ == "__main__":
-    #print(can_jump([2,3,1,1,4]))
-    #print(can_jump([3,2,1,0,4]))
-    #print(can_jump([2,3,4,5,1]))
+    print(can_jump([2,3,1,1,4]))
+    print(can_jump([3,2,1,0,4]))
+    print(can_jump([2,3,4,5,1]))
 
