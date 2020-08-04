@@ -1,4 +1,5 @@
 from typing import List
+from collections import  Counter
 
 """
     Reverse words
@@ -93,8 +94,90 @@ def is_plaindrome_2(s: str) -> bool :
     else:
         return False
 
+def first_uniq_char(s: str):
+    char_index_map = {}
+    for i in range(0, len(s)):
+        indexes = char_index_map.get(s[i], [])
+        indexes.append(i)
+        char_index_map[s[i]] = indexes
+
+    indexes = []
+    for idx in char_index_map.values():
+        if len(idx) == 1:
+            indexes.extend(idx)
+
+    indexes.sort()
+    return indexes[0] if len(indexes) > 0 else -1
+
+
+
+def is_anagram(s:str, t: str) -> bool:
+    if len(s) != len(t) :
+        return False
+    sl = list(s)
+    tl = list(t)
+    sl.sort()
+    tl.sort()
+    return sl == tl
+
+
+def detect_capital(word: str) -> bool:
+    wl = len(word)
+    if wl == 0:
+        return  False
+
+    if word.isupper() or word.islower():
+        return  True
+
+    if word[0].isupper() and word[1:].islower():
+        return True
+
+    return False
+
+def num_splits(s: str) -> int:
+    left = Counter()
+    right = Counter(s)
+
+
+    count = 0
+    for i in range(len(s)):
+        left[s[i]] += 1
+        right[s[i]] -= 1
+        if right[s[i]] == 0:
+            del right[s[i]]
+        if len(left) == len(right):
+            count += 1
+    return count
+
+def letter_case_permutation(s: str) -> List[str]:
+    n= len(s)
+
+    def helper(answer: List[str], sub: str, S: str, i: int):
+        if i == n:
+            answer.append(sub)
+            return
+
+        if S[i].isalpha():
+            helper(answer, sub + S[i].lower(), S, i + 1)
+            helper(answer, sub + S[i].upper(), S, i + 1)
+        else:
+            helper(answer, sub + S[i], S, i + 1)
+
+    answer = []
+    helper(answer, '', s, 0)
+    return answer
 
 if __name__ == "__main__":
+
+    print(letter_case_permutation('a1b2'))
+    #print(num_splits("aacaba")) # 2
+    #print(num_splits("abcd")) # 1
+    #print(num_splits("aaaaa")) # 4
+    #print(num_splits("acbadbaada")) # 2
+    #print(detect_capital('USA')) # True
+    #print(detect_capital('Google'))# True
+    #print(detect_capital('FlaG'))# False
+
     #print(reverse_words('a good   example'))
     #s = ['h','e', 'l', 'l', 'o']
     #reverse_string(s)
@@ -117,5 +200,11 @@ if __name__ == "__main__":
     #print(long_pressed_name("laiden", "laiden")) # True
     #print(long_pressed_name("alex","alexxr")) #False
 
-    print(is_plaindrome_2("A man, a plan, a canal: Panama"))
-    print(is_plaindrome_2("race a car"))
+    #print(is_plaindrome_2("A man, a plan, a canal: Panama"))
+    #print(is_plaindrome_2("race a car"))
+
+    #print(first_uniq_char('leetcode')) # 0
+    #print(first_uniq_char('loveleetcode')) # 2
+
+    #print(is_anagram('anagram', 'nagaram')) # True
+    #print(is_anagram('rat', 'car')) # False

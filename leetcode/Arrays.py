@@ -1,6 +1,8 @@
 from typing import  List
 class Arrays:
 
+    def __init__(self):
+
     def findDisappearedNumbers(self, nums: List[int]) -> List[int]:
         ret = []
         for num in nums:
